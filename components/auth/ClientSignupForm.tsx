@@ -10,6 +10,7 @@ export function ClientSignupForm() {
             type="text"
             placeholder="First Name"
             className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+            required
           />
         </div>
         <div className="relative">
@@ -17,6 +18,7 @@ export function ClientSignupForm() {
             type="text"
             placeholder="Last Name"
             className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+            required
           />
         </div>
       </div>
@@ -26,6 +28,7 @@ export function ClientSignupForm() {
           type="email"
           placeholder="Client Email"
           className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          required
         />
       </div>
 
@@ -35,6 +38,7 @@ export function ClientSignupForm() {
           type="tel" // Use type="tel" for phone numbers
           placeholder="Contact No."
           className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          required
         />
       </div>
 
@@ -43,6 +47,7 @@ export function ClientSignupForm() {
           type="password"
           placeholder="Password"
           className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          required
         />
       </div>
 
@@ -51,6 +56,7 @@ export function ClientSignupForm() {
           type="text"
           placeholder="Organization Name"
           className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          required
         />
       </div>
 

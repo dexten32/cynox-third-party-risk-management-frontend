@@ -11,6 +11,7 @@ export function CompanyForm() {
             type="text"
             placeholder="First Name"
             className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+            required
           />
         </div>
         <div className="relative">
@@ -18,6 +19,7 @@ export function CompanyForm() {
             type="text"
             placeholder="Last Name"
             className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+            required
           />
         </div>
       </div>
@@ -27,6 +29,7 @@ export function CompanyForm() {
           type="email"
           placeholder="Company Email"
           className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          required
         />
       </div>
       <div className="relative">
@@ -34,6 +37,7 @@ export function CompanyForm() {
           type="password"
           placeholder="Password"
           className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
+          required
         />
       </div>
       <button
