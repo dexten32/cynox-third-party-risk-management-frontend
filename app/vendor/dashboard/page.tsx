@@ -1,32 +1,61 @@
-// app/dashboard/vendor/page.tsx
+"use client";
 
-import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
+import { useState } from "react";
+import VendorInfoPanel from "@/components/vendor/VendorInfoPanel";
+import VendorStatus from "@/components/vendor/VendorStatus";
+import VendorQuestionnaire from "@/components/vendor/VendorQuestionnaire";
+import { Button } from "@/components/ui/button";
 
-export default function VendorDashboard() {
+export default function VendorDashboardPage() {
+  const [activeTab, setActiveTab] = useState<"dashboard" | "questionnaire">(
+    "dashboard"
+  );
+
+  // Dummy vendor data (replace with real data later)
+  const vendorInfo: {
+    name: string;
+    email: string;
+    client: string;
+    questionnaireStatus:
+      | "Not Started"
+      | "Incomplete"
+      | "Complete"
+      | "Submitted";
+  } = {
+    name: "John Vendor",
+    email: "vendor@example.com",
+    client: "Acme Corp",
+    questionnaireStatus: "Incomplete", // Not Started | Incomplete | Complete | Submitted
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <DashboardLayout>
-        <main className="flex-1 p-6">
-          <h1 className="text-2xl font-bold mb-4">Welcome, Company User!</h1>
+    <div className="flex flex-col max-w-4xl mx-auto min-h-[90dvh] pt-24 px-2 sm:px-4 space-y-6">
+      {/* Vendor Info Section */}
+      <VendorInfoPanel info={vendorInfo} />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 border rounded-xl bg-background shadow">
-              <h2 className="font-semibold mb-2">Clients</h2>
-              <p>Manage and view clients here.</p>
-            </div>
+      {/* Toggle Buttons */}
+      <div className="flex gap-4">
+        <Button
+          variant={activeTab === "dashboard" ? "default" : "secondary"}
+          onClick={() => setActiveTab("dashboard")}
+        >
+          Dashboard
+        </Button>
+        <Button
+          variant={activeTab === "questionnaire" ? "default" : "secondary"}
+          onClick={() => setActiveTab("questionnaire")}
+          disabled={vendorInfo.questionnaireStatus === "Submitted"} // Lock after submission
+        >
+          Questionnaire
+        </Button>
+      </div>
 
-            <div className="p-4 border rounded-xl bg-background shadow">
-              <h2 className="font-semibold mb-2">Vendors</h2>
-              <p>Manage and review vendors.</p>
-            </div>
-
-            <div className="p-4 border rounded-xl bg-background shadow">
-              <h2 className="font-semibold mb-2">Upload Summary</h2>
-              <p>Upload .docx summary reports.</p>
-            </div>
-          </div>
-        </main>
-      </DashboardLayout>
+      {/* Conditional Content */}
+      {activeTab === "dashboard" ? (
+        <VendorStatus questionnaireStatus={vendorInfo.questionnaireStatus} />
+      ) : (
+        <VendorQuestionnaire />
+      )}
     </div>
   );
 }

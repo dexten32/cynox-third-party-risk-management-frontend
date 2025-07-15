@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { UploadCloud } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import ClientVendorSidebar from "@/components/dashboard/ClientVendorSidebar";
-import VendorDetailsPanel from "@/components/dashboard/VendorDetailsPanel";
+import ClientVendorSidebar from "@/components/client/ClientVendorSidebar";
+import VendorDetailsPanel from "@/components/vendor/VendorDetailsPanel";
 
 export default function CompanyDashboard() {
   const [selectedVendor, setSelectedVendor] = useState<string | null>(null);

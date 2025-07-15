@@ -1,28 +1,46 @@
-// app/dashboard/company/page.tsx
+"use client";
 
-export default function CompanyDashboard() {
+import ClientInfoPanel from "@/components/client/ClientInfoPanel";
+import ClientVendorSidebar from "@/components/client/ClientVendorSidebar";
+import VendorDetailsPanel from "@/components/vendor/VendorDetailsPanel";
+import { useState } from "react";
+
+export default function ClientDashboard() {
+  const [selectedVendor, setSelectedVendor] = useState<string | null>(null);
+
+  // Dummy client data (replace with real data later)
+  const clientInfo = {
+    name: "Acme Corp",
+    email: "client@acme.com",
+    totalVendors: 5,
+    completedVendors: 3,
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-1 p-6">
-        <h1 className="text-2xl font-bold mb-4">Welcome, Company User!</h1>
+    <div className="flex min-h-[90dvh] pt-24 px-2 sm:px-4 justify-center">
+      <div className="flex-1 justify-between max-w-4xl mr-6 space-y-6">
+        {/* Client Info Top Panel */}
+        <ClientInfoPanel
+          name={clientInfo.name}
+          email={clientInfo.email}
+          totalVendors={clientInfo.totalVendors}
+          completedVendors={clientInfo.completedVendors}
+        />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-4 border rounded-xl bg-background shadow">
-            <h2 className="font-semibold mb-2">Clients</h2>
-            <p>Manage and view clients here.</p>
+        {/* Conditional Vendor Details / Placeholder */}
+        {selectedVendor ? (
+          <VendorDetailsPanel selectedVendor={selectedVendor} />
+        ) : (
+          <div className="border border-border rounded-xl bg-background p-6 shadow-md w-full min-h-[300px] flex items-center justify-center">
+            <p className="text-muted-foreground text-center">
+              Select a vendor from the sidebar to view their summary and
+              questionnaire details.
+            </p>
           </div>
+        )}
+      </div>
 
-          <div className="p-4 border rounded-xl bg-background shadow">
-            <h2 className="font-semibold mb-2">Vendors</h2>
-            <p>Manage and review vendors.</p>
-          </div>
-
-          <div className="p-4 border rounded-xl bg-background shadow">
-            <h2 className="font-semibold mb-2">Upload Summary</h2>
-            <p>Upload .docx summary reports.</p>
-          </div>
-        </div>
-      </main>
+      <ClientVendorSidebar setSelectedVendor={setSelectedVendor} />
     </div>
   );
 }
