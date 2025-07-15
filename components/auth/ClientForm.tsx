@@ -7,24 +7,6 @@ export function ClientForm() {
       {" "}
       {/* Increased space-y */}
       {/* New: First Name and Last Name fields, side-by-side */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="First Name"
-            className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            required // Increased padding and text size
-          />
-        </div>
-        <div className="relative">
-          <input
-            type="text"
-            placeholder="Last Name"
-            className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-            required // Increased padding and text size
-          />
-        </div>
-      </div>
       <div className="relative">
         <input
           type="email"

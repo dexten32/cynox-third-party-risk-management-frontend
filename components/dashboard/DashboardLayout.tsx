@@ -1,9 +1,7 @@
-// app/dashboard/company/layout.tsx
-
-import { FloatingNavbar } from "@/components/dashboard/navbar";
+import { FloatingNavbar } from "./navbar";
 import { ReactNode } from "react";
 
-export default function ClientLayout({ children }: { children: ReactNode }) {
+export function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <FloatingNavbar />
