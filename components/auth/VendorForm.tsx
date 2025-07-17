@@ -32,7 +32,7 @@ export function VendorForm() {
       </div>
       <button
         type="submit"
-        className="w-full py-4 rounded-lg text-white bg-[var(--accent)] hover:bg-[var(--accent-hover)] font-medium transition-colors duration-200 shadow-md hover:shadow-lg text-lg"
+        className="w-full py-4 rounded-lg text-white bg-[var(--accent)] hover:text-[var(--accent)] hover:bg-[var(--accent-hover)] font-medium transition-colors duration-200 shadow-md hover:shadow-lg text-lg"
       >
         Login as Vendor
       </button>

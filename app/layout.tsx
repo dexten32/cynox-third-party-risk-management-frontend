@@ -2,28 +2,31 @@
 
 import "../styles/globals.css";
 import { Inter } from "next/font/google";
-import { useEffect, useState } from "react";
+import Squares from "@/components/background/squares";
 
 const inter = Inter({ subsets: ["latin"] });
-const LOCAL_KEY = "custom-theme";
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [theme, setTheme] = useState("");
-
   // Default theme setup (runs on client only)
-  useEffect(() => {
-    const savedTheme = localStorage.getItem(LOCAL_KEY) || "theme-light-blue";
-    setTheme(savedTheme);
-    document.body.className = savedTheme;
-  }, []);
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${theme}`}>{children}</body>
+      <body className={`${inter.className}`}>
+        <div className="fixed inset-0 -z-10">
+          <Squares
+            borderColor="#e6e6e6ff" // or 'transparent' if you prefer
+            hoverFillColor="#f8f8f8ff"
+            squareSize={40}
+            speed={0.1}
+            direction="diagonal"
+          />
+        </div>
+        {children}
+      </body>
     </html>
   );
 }

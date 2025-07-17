@@ -13,14 +13,14 @@ export default function VendorDetailsPanel({
 
   if (!selectedVendor) {
     return (
-      <div className="flex items-center justify-center h-[50vh] border border-border rounded-xl bg-background text-muted-foreground">
+      <div className="flex items-center justify-center h-[50vh] border border-border rounded-xl bg-[var(--bg)] text-[var(--fg)]">
         Nothing to show here
       </div>
     );
   }
 
   return (
-    <div className="border border-border rounded-xl bg-background p-6 shadow-md w-full">
+    <div className="border border-border rounded-xl bg-[var(--bg)] p-6 shadow-md w-full">
       {/* View Switcher */}
       <div className="flex gap-4 mb-4">
         <button

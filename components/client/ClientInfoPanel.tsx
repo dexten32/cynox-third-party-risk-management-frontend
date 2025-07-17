@@ -16,7 +16,7 @@ export default function ClientInfoPanel({
   const pendingVendors = totalVendors - completedVendors;
 
   return (
-    <div className="border border-border rounded-xl bg-background p-6 shadow-md w-full flex flex-col gap-2">
+    <div className="border border-border rounded-xl bg-[var(--bg)] p-6 shadow-md w-full flex flex-col gap-2">
       <h2 className="text-xl font-semibold text-foreground">Welcome, {name}</h2>
       <p className="text-sm text-muted-foreground">{email}</p>
 

@@ -30,7 +30,7 @@ export default function ClientVendorSidebar({
   };
 
   return (
-    <aside className="w-1/5 min-w-[200px] bg-background border border-border rounded-xl shadow-md p-4 overflow-y-auto min-h-[70dvh]">
+    <aside className="w-1/5 min-w-[200px] bg-[var(--bg)] border border-border rounded-xl shadow-md p-4 overflow-y-auto min-h-[70dvh]">
       <h3 className="text-lg font-semibold mb-4">Clients & Vendors</h3>
 
       <div className="space-y-2">

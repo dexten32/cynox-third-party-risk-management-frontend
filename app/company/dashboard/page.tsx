@@ -14,7 +14,7 @@ export default function CompanyDashboard() {
       {/* Left Side: Main Content */}
       <div className="flex-1 justify-between max-w-4xl mr-6 space-y-6">
         {/* Upload Section */}
-        <div className="border border-border rounded-xl bg-background p-6 shadow-md w-full">
+        <div className="border border-border rounded-xl bg-[var(--bg)] p-6 shadow-md w-full">
           <h2 className="text-xl font-semibold text-foreground mb-2">
             Upload Vendor Summary Report
           </h2>

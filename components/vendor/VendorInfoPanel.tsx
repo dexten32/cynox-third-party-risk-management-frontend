@@ -13,7 +13,7 @@ type VendorInfoProps = {
 
 export default function VendorInfoPanel({ info }: VendorInfoProps) {
   return (
-    <div className="border border-border rounded-xl bg-background p-6 shadow-md w-full flex flex-col gap-2">
+    <div className="border border-border rounded-xl bg-[var(--bg)] p-6 shadow-md w-full flex flex-col gap-2">
       <h2 className="text-xl font-semibold text-foreground">
         Welcome, {info.name}
       </h2>
