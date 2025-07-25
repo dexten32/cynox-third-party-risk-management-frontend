@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 const api = axios.create({
-  baseURL: "http://localhost:4000/",
+  baseURL: "http://localhost:5000/",
   withCredentials: true,
 });
 

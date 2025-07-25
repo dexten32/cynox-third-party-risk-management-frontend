@@ -19,7 +19,7 @@ export default function ClientVendorSidebar({ setSelectedVendor }: Props) {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch("http://localhost:4000/users/by-role");
+        const res = await fetch("http://localhost:5000/api/users/by-role");
         const data = await res.json();
         setClients(data.clients || []);
         setVendors(data.vendors || []);

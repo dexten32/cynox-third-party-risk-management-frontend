@@ -16,8 +16,14 @@ export default function PendingUsersPanel() {
   const [loadingIds, setLoadingIds] = useState<string[]>([]);
 
   const fetchPending = async () => {
-    const res = await fetch("/api/users/pending", { credentials: "include" });
-    if (res.ok) setUsers(await res.json());
+    const res = await fetch("http://localhost:5000/api/users/pending", {
+      credentials: "include",
+    });
+    if (res.ok) {
+      const data = await res.json();
+      console.log("Fetched pending users:", data);
+      setUsers(data);
+    }
   };
 
   useEffect(() => {
@@ -26,7 +32,7 @@ export default function PendingUsersPanel() {
 
   const updateStatus = async (id: string, status: "APPROVED" | "REJECTED") => {
     setLoadingIds((prev) => [...prev, id]);
-    await fetch(`/api/users/${id}/status`, {
+    await fetch(`http://localhost:5000/api/users/${id}/status`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

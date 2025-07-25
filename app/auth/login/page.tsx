@@ -9,7 +9,7 @@ import { CompanySignupForm } from "@/components/auth/CompanySignupForm";
 import { ClientSignupForm } from "@/components/auth/ClientSignupForm";
 import { VendorSignupForm } from "@/components/auth/VendorSignupForm";
 import { FormFooter } from "@/components/auth/FormFooter";
-import { PendingUserPanel } from "@/components/company/pendingUserPanel";
+
 import Image from "next/image";
 
 export default function LoginPage() {

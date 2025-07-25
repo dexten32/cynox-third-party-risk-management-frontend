@@ -1,6 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+interface Vendor {
+  id: string;
+  name: string;
+  email: string;
+  // Add more fields as needed
+}
 
 export default function VendorDetailsPanel({
   selectedVendor,
@@ -10,8 +17,31 @@ export default function VendorDetailsPanel({
   const [activeView, setActiveView] = useState<"dashboard" | "questionnaire">(
     "dashboard"
   );
+  const [vendor, setVendor] = useState<Vendor | null>(null);
 
-  if (!selectedVendor) {
+  // Fetch vendor details when selectedVendor changes
+  useEffect(() => {
+    if (!selectedVendor) {
+      setVendor(null);
+      return;
+    }
+
+    const fetchVendor = async () => {
+      try {
+        const res = await fetch(
+          `http://localhost:5000/api/users/${selectedVendor}`
+        );
+        const data = await res.json();
+        setVendor(data);
+      } catch (err) {
+        console.error("Failed to fetch vendor details", err);
+      }
+    };
+
+    fetchVendor();
+  }, [selectedVendor]);
+
+  if (!selectedVendor || !vendor) {
     return (
       <div className="flex items-center justify-center h-[50vh] border border-border rounded-xl bg-[var(--bg)] text-[var(--fg)]">
         Nothing to show here
@@ -51,7 +81,7 @@ export default function VendorDetailsPanel({
         <div>
           <h2 className="text-lg font-semibold mb-2">Vendor Summary</h2>
           <p className="text-muted-foreground mb-2">
-            Showing summary details for <strong>{selectedVendor}</strong>.
+            Showing summary details for <strong>{vendor.name}</strong>.
           </p>
           {/* Add summary data here */}
         </div>
@@ -59,7 +89,7 @@ export default function VendorDetailsPanel({
         <div>
           <h2 className="text-lg font-semibold mb-2">Vendor Questionnaire</h2>
           <p className="text-muted-foreground mb-2">
-            Showing questionnaire answers for <strong>{selectedVendor}</strong>.
+            Showing questionnaire answers for <strong>{vendor.name}</strong>.
           </p>
           {/* Add questionnaire content here */}
         </div>

@@ -20,9 +20,8 @@ export default function CompanyDashboard() {
         {/* Dashboard Navigation */}
         <div className="flex gap-4 mb-4 border-b border-gray-200">
           {" "}
-          {/* Optional: Add a subtle border below the entire group */}
           <Button
-            variant="ghost" // Using ghost variant as a base for custom styling
+            variant="ghost"
             onClick={() => setActivePanel("summary")}
             className={`relative px-4 py-2 ${
               activePanel === "summary"
@@ -33,7 +32,7 @@ export default function CompanyDashboard() {
             Summary
           </Button>
           <Button
-            variant="ghost" // Using ghost variant as a base for custom styling
+            variant="ghost"
             onClick={() => setActivePanel("pending")}
             className={`relative px-4 py-2 ${
               activePanel === "pending"
