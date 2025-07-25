@@ -14,7 +14,7 @@ export function FormFooter({ mode, onToggle }: FormFooterProps) {
           Don’t have an account?{" "}
           <button
             onClick={onToggle}
-            className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium ml-1"
+            className="text-[var(--accent)] hover:text-[var(--fg)] font-medium ml-1"
           >
             Sign up
           </button>
@@ -24,7 +24,7 @@ export function FormFooter({ mode, onToggle }: FormFooterProps) {
           Already a Member?{" "}
           <button
             onClick={onToggle}
-            className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium ml-1"
+            className="text-[var(--accent)] hover:text-[var(--fg)] font-medium ml-1"
           >
             Log In
           </button>

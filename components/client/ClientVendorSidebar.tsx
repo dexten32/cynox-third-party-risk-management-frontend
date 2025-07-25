@@ -1,69 +1,65 @@
 "use client";
 
-import { useState } from "react";
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
-const dummyData = [
-  {
-    client: "Client A",
-    vendors: ["Vendor 1", "Vendor 2"],
-  },
-  {
-    client: "Client B",
-    vendors: ["Vendor 3", "Vendor 4"],
-  },
-  {
-    client: "Client C",
-    vendors: ["Vendor 5"],
-  },
-];
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
 
-export default function ClientVendorSidebar({
-  setSelectedVendor,
-}: {
-  setSelectedVendor: (vendor: string) => void;
-}) {
-  const [expanded, setExpanded] = useState<string | null>(null);
+interface Props {
+  setSelectedVendor: (vendorId: string) => void;
+}
 
-  const toggleClient = (clientName: string) => {
-    setExpanded(expanded === clientName ? null : clientName);
-  };
+export default function ClientVendorSidebar({ setSelectedVendor }: Props) {
+  const [clients, setClients] = useState<User[]>([]);
+  const [vendors, setVendors] = useState<User[]>([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const res = await fetch("http://localhost:4000/users/by-role");
+        const data = await res.json();
+        setClients(data.clients || []);
+        setVendors(data.vendors || []);
+      } catch (err) {
+        console.error("Failed to fetch users", err);
+      }
+    };
+
+    fetchUsers();
+  }, []);
 
   return (
-    <aside className="w-1/5 min-w-[200px] bg-[var(--bg)] border border-border rounded-xl shadow-md p-4 overflow-y-auto min-h-[70dvh]">
-      <h3 className="text-lg font-semibold mb-4">Clients & Vendors</h3>
-
-      <div className="space-y-2">
-        {dummyData.map(({ client, vendors }) => (
-          <div key={client}>
-            <button
-              onClick={() => toggleClient(client)}
-              className="w-full flex items-center justify-between text-foreground font-medium hover:bg-muted px-3 py-2 rounded-md transition"
-            >
-              {client}
-              {expanded === client ? (
-                <ChevronDown className="w-4 h-4" />
-              ) : (
-                <ChevronRight className="w-4 h-4" />
-              )}
-            </button>
-
-            {expanded === client && (
-              <ul className="ml-4 pl-5 mt-1 text-muted-foreground text-sm">
-                {vendors.map((vendor) => (
-                  <li
-                    key={vendor}
-                    className="cursor-pointer hover:text-foreground transition pl-4 list-disc"
-                    onClick={() => setSelectedVendor(vendor)}
-                  >
-                    {vendor}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
+    <div className="w-80 border border-border rounded-xl bg-[var(--bg)] p-4 space-y-4 h-fit shadow-md">
+      <div>
+        <h3 className="text-lg font-semibold text-foreground mb-2">Clients</h3>
+        <ul className="space-y-1 text-sm">
+          {clients.map((client) => (
+            <li key={client.id} className="text-muted-foreground">
+              {client.name || client.email}
+            </li>
+          ))}
+        </ul>
       </div>
-    </aside>
+
+      <div>
+        <h3 className="text-lg font-semibold text-foreground mt-4 mb-2">
+          Vendors
+        </h3>
+        <ul className="space-y-1 text-sm">
+          {vendors.map((vendor) => (
+            <li
+              key={vendor.id}
+              className="text-blue-600 hover:underline cursor-pointer"
+              onClick={() => setSelectedVendor(vendor.id)}
+            >
+              {vendor.name || vendor.email}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 }

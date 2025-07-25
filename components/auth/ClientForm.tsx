@@ -1,33 +1,55 @@
-// ClientForm.tsx
+// components/forms/ClientForm.tsx
 "use client";
 
+import { useState } from "react";
+import { useAuth } from "@/components/hooks/AuthService";
+import { useRouter } from "next/navigation";
+
 export function ClientForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const login = useAuth().login;
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      await login(email, password, "CLIENT");
+      router.push("/client/dashboard");
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (err) {
+      alert("Login failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <form className="space-y-6">
-      {" "}
-      {/* Increased space-y */}
-      {/* New: First Name and Last Name fields, side-by-side */}
-      <div className="relative">
-        <input
-          type="email"
-          placeholder="Client Email"
-          className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          required // Increased padding and text size
-        />
-      </div>
-      <div className="relative">
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full px-5 py-4 border border-[var(--border)] rounded-lg bg-[var(--bg)] text-[var(--fg)] placeholder-gray-500 text-base focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
-          required // Increased padding and text size
-        />
-      </div>
+    <form className="space-y-6" onSubmit={handleSubmit}>
+      <input
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+        className="input"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+        className="input"
+      />
       <button
         type="submit"
-        className="w-full py-4 rounded-xl text-white bg-[var(--accent)] hover:text-[var(--accent)] hover:bg-[var(--accent-hover)] font-medium transition-colors duration-200 shadow-md hover:shadow-lg text-lg" // Increased padding and text size
+        disabled={loading}
+        className="w-full py-4 rounded-xl text-white bg-[var(--accent)]"
       >
-        Login as Client
+        {loading ? "Logging in..." : "Login as Client"}
       </button>
     </form>
   );
